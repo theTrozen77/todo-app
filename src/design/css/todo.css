@@ -1,4 +1,4 @@
-.todo-home {
+/* .todo-home {
   width: 100%;
   height: 100vh;
   background-color: white;
@@ -11,8 +11,9 @@
   height: 70vh;
   width: 900px;
   margin: 5rem 0 0 0;
-}
+} */
 
 .text-display {
-  text-decoration: line-through red;
+  /* text-decoration: line-through red; */
+  opacity: 0.4;
 }

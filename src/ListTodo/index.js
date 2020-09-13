@@ -11,6 +11,8 @@ const Todo = () => {
   });
 
   const [todoList, setTodoList] = React.useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
   useEffect(() => {
     const storageData = localStorage.getItem("todo-data");
     const parsedArray = JSON.parse(storageData);
@@ -50,48 +52,63 @@ const Todo = () => {
   const completed = todoList?.filter((item) => item.completed === true);
 
   // const showSelectedDate = (value) => {
+  //   let filteredData = [];
   //   if (value === "today") {
-  //     const filteredData = todoList?.map(
+  //     filteredData = todoList?.filter(
   //       (list) => list.createdDate > moment().startOf("day")
   //     );
-  //     console.log(filteredData);
-  //     setTodoList(filteredData);
+  //   }
+  //   if (value === "tomorrow") {
+  //     filteredData = todoList?.filter(
+  //       (list) => list.createdDate > moment().endOf("day")
+  //     );
   //   }
   // };
-  return (
-    <div className="todo-home">
-      <div className="todo-container">
-        <h1>TODO APP</h1>
-        <div className="left-nav-bar">
-          Total Number of items: {totalEntries}
-          Completed: {completed.length}
-          <span onClick={() => showSelectedDate("today")}>Today</span>
-          <span>Tomorrow</span>
-        </div>
-        <form className={"input-form"}>
-          <input
-            type="text"
-            name="todo"
-            placeholder="Todo"
-            value={values.text}
-            onChange={(e) => {
-              setValues({ ...values, text: e.target.value });
-            }}
-          ></input>
-          <button type="submit" onClick={handleSubmit}>
-            Add
-          </button>
-        </form>
 
-        <div>
-          <View
-            todoList={todoList}
-            handleDelete={handleDelete}
-            handleCheckbox={handleCheckbox}
-          />
+  return (
+    <>
+      <h1>TODO APP</h1>
+      <div className="row">
+        <div className="col-2 side-nav p-4">
+          <div className="mb-2">Total Number of items: {totalEntries}</div>
+          <div className="mb-2">Completed: {completed.length}</div>
+          {/* <span onClick={() => showSelectedDate("today")}>Today</span>
+          <span onClick={() => showSelectedDate("tomorrow")}>Tomorrow</span> */}
+        </div>
+        <div className="col-10">
+          <form className="row mb-3 form-input">
+            <div className="col-10 ">
+              <input
+                className="form-control"
+                name="todo"
+                placeholder="Todo"
+                value={values.text}
+                onChange={(e) => {
+                  setValues({ ...values, text: e.target.value });
+                }}
+              ></input>
+            </div>
+            <div className="col-2 input-group-append">
+              <button
+                className="btn btn-outline-secondary"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Add
+              </button>
+            </div>
+          </form>
+          <div>
+            <View
+              todoList={todoList}
+              filteredData={filteredData}
+              handleDelete={handleDelete}
+              handleCheckbox={handleCheckbox}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

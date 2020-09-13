@@ -1,5 +1,33 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+} */
+
+html,
+body {
+  margin: 0px;
+  padding: 2px;
+  overflow: auto;
+  background-color: rgb(208, 217, 218);
+}
+h1 {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.main {
+  height: 100vh;
+}
+
+.side-nav {
+  padding: 10px;
+  background-color: rgb(238, 201, 145);
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.form-input {
+  align-items: center;
 }
