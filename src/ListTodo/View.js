@@ -1,16 +1,10 @@
 import React from "react";
-import moment from "moment";
-const View = ({ todoList, handleCheckbox, handleDelete }) => {
-  const totalEntries = todoList.length;
-  const completed = todoList?.filter((item) => item.completed === true);
+import { timeDateMinutes } from "../components/utils";
 
+const View = ({ todoList, handleCheckbox, handleDelete }) => {
   return (
     <>
       <div className="view-todo">
-        <div>
-          Total Number of items: {totalEntries}
-          Completed: {completed.length}
-        </div>
         <div>
           {todoList &&
             todoList?.map((value, index) => (
@@ -22,7 +16,7 @@ const View = ({ todoList, handleCheckbox, handleDelete }) => {
                 />
                 <li className={value.completed ? `text-display` : ""}>
                   {value.text}
-                  {value.createdDate.format("YYYY/MM/D hh:mm")}
+                  {timeDateMinutes(value.createdDate)}
                 </li>
                 <button onClick={() => handleDelete(index)}>remove</button>
               </div>
